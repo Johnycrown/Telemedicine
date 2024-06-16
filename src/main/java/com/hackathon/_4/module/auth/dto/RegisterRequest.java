@@ -1,14 +1,7 @@
 package com.hackathon._4.module.auth.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.hackathon._4.module.usermanagement.domain.Role;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class RegisterRequest {
     private String firstname;
     private String lastname;
