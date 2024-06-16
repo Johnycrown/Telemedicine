@@ -2,6 +2,7 @@ package com.hackathon._4.module.auth.service;
 
 import com.hackathon._4.config.JwtService;
 import com.hackathon._4.module.auth.dto.AuthenticationResponse;
+import com.hackathon._4.module.auth.dto.LoginRequest;
 import com.hackathon._4.module.auth.dto.RegisterRequest;
 import com.hackathon._4.module.security.TwoFactorAuthenticationService;
 import com.hackathon._4.module.usermanagement.domain.Role;
@@ -48,5 +49,28 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                 .build();
     }
 
-
+    public AuthenticationResponse authenticate(LoginRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+        var user = repository.findByEmail(request.getEmail())
+                .orElseThrow();
+        if (user.isMfaEnabled()) {
+            return AuthenticationResponse.builder()
+                    .accessToken("")
+                    .refreshToken("")
+                    .mfaEnabled(true)
+                    .build();
+        }
+        var jwtToken = jwtService.generateToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
+                .mfaEnabled(false)
+                .build();
+    }
 }
