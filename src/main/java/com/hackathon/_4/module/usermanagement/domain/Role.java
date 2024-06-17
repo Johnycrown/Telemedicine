@@ -22,7 +22,19 @@ public enum Role {
                     MANAGER_READ,
                     MANAGER_UPDATE,
                     MANAGER_DELETE,
-                    MANAGER_CREATE
+                    MANAGER_CREATE,
+                    DOCTOR_READ,
+                    DOCTOR_UPDATE,
+                    DOCTOR_DELETE,
+                    DOCTOR_CREATE,
+                    PATIENT_READ,
+                    PATIENT_UPDATE,
+                    PATIENT_DELETE,
+                    PATIENT_CREATE,
+                    APPOINTMENT_READ,
+                    APPOINTMENT_UPDATE,
+                    APPOINTMENT_DELETE,
+                    APPOINTMENT_CREATE
             )
     ),
     MANAGER(
@@ -31,6 +43,34 @@ public enum Role {
                     MANAGER_UPDATE,
                     MANAGER_DELETE,
                     MANAGER_CREATE
+            )
+    ),
+    DOCTOR(
+            Set.of(
+                    DOCTOR_READ,
+                    DOCTOR_UPDATE,
+                    DOCTOR_DELETE,
+                    DOCTOR_CREATE,
+                    APPOINTMENT_READ,
+                    APPOINTMENT_UPDATE,
+                    APPOINTMENT_DELETE,
+                    APPOINTMENT_CREATE
+
+            )
+    ),
+
+    PATIENT(
+            Set.of(
+                    PATIENT_READ,
+                    PATIENT_UPDATE,
+                    PATIENT_DELETE,
+                    PATIENT_CREATE,
+                    APPOINTMENT_READ,
+                    APPOINTMENT_UPDATE,
+                    APPOINTMENT_DELETE,
+                    APPOINTMENT_CREATE
+
+
             )
     );
 

@@ -42,6 +42,11 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                 .role(Role.ADMIN)
                 .mfaEnabled(request.isMfaEnabled())
                 .build();
+        if(request.getRole().equals(Role.DOCTOR)){
+            if(request.getAvailability()!=null) user.setAvailability(request.getAvailability());
+            if(request.getSpecialization()!=null) user.setSpecialization(request.getSpecialization());
+        }
+
 
         // if MFA enabled --> Generate Secret
         if (request.isMfaEnabled()) {

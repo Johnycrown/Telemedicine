@@ -3,6 +3,8 @@ package com.hackathon._4.module.auth.dto;
 import com.hackathon._4.module.usermanagement.domain.Role;
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
 public class RegisterRequest {
     private String firstname;
@@ -11,4 +13,8 @@ public class RegisterRequest {
     private String password;
     private Role role;
     private boolean mfaEnabled;
+    private String specialization;
+  //  @ElementCollection
+    private Map<String, String> availability; // Example: {"MONDAY": "09:00-17:00", "WEDNESDAY": "09:00-17:00"}
+
 }

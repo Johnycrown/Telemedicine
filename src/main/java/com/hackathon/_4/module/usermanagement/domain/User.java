@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Map;
 
 @Data
 @Builder
@@ -27,6 +28,10 @@ public class User implements UserDetails {
   private String password;
   private boolean mfaEnabled;
   private String secret;
+  private String specialization;
+  @ElementCollection
+  private Map<String, String> availability; // Example: {"MONDAY": "09:00-17:00", "WEDNESDAY": "09:00-17:00"}
+
 
   @Enumerated(EnumType.STRING)
   private Role role;
@@ -63,6 +68,6 @@ public class User implements UserDetails {
 
   @Override
   public boolean isEnabled() {
-    return true;
+    return false;
   }
 }
