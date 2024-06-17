@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, "/api/v1/management/**").hasAnyAuthority(Permission.ADMIN_CREATE.name(), Permission.MANAGER_CREATE.name())
                                 .requestMatchers(HttpMethod.PUT, "/api/v1/management/**").hasAnyAuthority(Permission.ADMIN_UPDATE.name(), Permission.MANAGER_UPDATE.name())
                                 .requestMatchers(HttpMethod.DELETE, "/api/v1/management/**").hasAnyAuthority(Permission.ADMIN_DELETE.name(), Permission.MANAGER_DELETE.name())
+                                .requestMatchers("/api/v1/doctor/**").hasAnyRole(Role.ADMIN.name(), Role.MANAGER.name(), Role.DOCTOR.name())
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

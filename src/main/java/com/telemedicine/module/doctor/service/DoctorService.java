@@ -9,7 +9,8 @@ import java.util.Optional;
 public interface DoctorService {
 
     Doctor getSingleDoctor(Long userId) throws IllegalAccessException;
-    List<Doctor> fetchAllDoctor(Pageable pageable);
+    List<Doctor> fetchAllDoctor(int pageNumber, int pageSize);
+    List<Doctor> fetchAllDoctorBySpecialization(String specialization, int pageNumber, int pageSize);
     String deleteDoctor();
 
 }

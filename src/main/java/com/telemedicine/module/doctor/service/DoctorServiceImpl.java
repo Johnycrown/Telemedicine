@@ -3,6 +3,7 @@ package com.telemedicine.module.doctor.service;
 import com.telemedicine.module.doctor.domain.Doctor;
 import com.telemedicine.module.doctor.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,27 @@ public class DoctorServiceImpl implements  DoctorService{
     }
 
     @Override
-    public List<Doctor> fetchAllDoctor(Pageable pageable) {
+    public List<Doctor> fetchAllDoctor(int pageNumber, int pageSize) {
+        if(pageNumber>1){
+            pageNumber -=1;
+        }
+        if(pageSize<1){
+            pageSize = 10;
+        }
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
         return doctorRepository.findAll(pageable).stream().toList();
+    }
+
+    @Override
+    public List<Doctor> fetchAllDoctorBySpecialization(String specialization,int pageNumber, int pageSize) {
+        if(pageNumber>1){
+            pageNumber -=1;
+        }
+        if(pageSize<1){
+            pageSize = 10;
+        }
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return doctorRepository.findBySpecialization(specialization,pageable);
     }
 
     @Override

@@ -18,6 +18,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +31,7 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationServiceImpl implements AuthenticationService{
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
@@ -67,6 +69,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                     .userId(savedUser.getUserId())
                     .name(request.getFirstname() +" "+ request.getLastname())
                     .availability(request.getAvailability())
+                    .specialization(request.getSpecialization())
                     .build();
             doctorRepository.save(doctor);
         }
@@ -92,6 +95,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                         request.getPassword()
                 )
         );
+        log.info("REquest get here {}", request);
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         if (user.isMfaEnabled()) {
