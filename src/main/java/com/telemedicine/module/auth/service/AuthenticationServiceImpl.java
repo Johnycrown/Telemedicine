@@ -9,7 +9,7 @@ import com.telemedicine.module.auth.dto.VerifyLoginRequest;
 import com.telemedicine.module.doctor.domain.Doctor;
 import com.telemedicine.module.doctor.repository.DoctorRepository;
 import com.telemedicine.module.patient.domain.Patient;
-import com.telemedicine.module.patient.service.PatientRepository;
+import com.telemedicine.module.patient.repository.PatientRepository;
 import com.telemedicine.module.security.TwoFactorAuthenticationService;
 import com.telemedicine.module.usermanagement.domain.Role;
 import com.telemedicine.module.usermanagement.domain.User;
