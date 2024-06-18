@@ -18,7 +18,6 @@
 	<name>telemedicine</name>
 	<description>hackathon project</description>
 
-
 	<properties>
 		<java.version>17</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
