@@ -1,4 +1,4 @@
-package com.telemedicine.module.email;
+package com.telemedicine.module.notification;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
