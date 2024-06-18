@@ -14,7 +14,11 @@
 	<name>telemedicine</name>
 	<description>hackathon project</description>
 	<properties>
-		<java.version>11</java.version>
+<!--		<java.version>11</java.version>-->
+<!--		<properties>-->
+			<maven.compiler.source>11</maven.compiler.source>
+			<maven.compiler.target>11</maven.compiler.target>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -101,6 +105,8 @@
 			</plugin>
 		</plugins>
 		<finalName>spring-boot-docker</finalName>
+
 	</build>
+
 
 </project>
