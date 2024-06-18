@@ -8,10 +8,10 @@
 		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.hackathon</groupId>
-	<artifactId>2024</artifactId>
+	<groupId>com.telemedicine</groupId>
+	<artifactId>telemedicine</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>2024</name>
+	<name>telemedicine</name>
 	<description>hackathon project</description>
 	<properties>
 		<java.version>17</java.version>
