@@ -9,11 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PatientServiceImpl implements PatientService {
-
     private final PatientRepository patientRepository;
     @Override
     public Patient getSinglePatient(Long userId) throws IllegalAccessException {
@@ -32,6 +32,6 @@ public class PatientServiceImpl implements PatientService {
             pageSize = 10;
         }
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return patientRepository.findAll(pageable).stream().toList();
+        return patientRepository.findAll(pageable).stream().collect(Collectors.toList());
     }
 }
