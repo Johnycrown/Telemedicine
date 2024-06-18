@@ -24,7 +24,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the JAR file from the first stage
-COPY --from=build /app/target/spring-boot-docker.jar app.ar
+COPY --from=build /app/target/spring-boot-docker.jar app.jar
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8082
