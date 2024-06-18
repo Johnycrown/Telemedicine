@@ -111,6 +111,11 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .mfaEnabled(false)
+                .userId(user.getUserId())
+                .role(user.getRole())
+                .email(user.getEmail())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
                 .build();
     }
 
