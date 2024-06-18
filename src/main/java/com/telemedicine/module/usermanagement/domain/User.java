@@ -29,6 +29,7 @@ public class User implements UserDetails {
   private boolean mfaEnabled;
   private String secret;
   private String specialization;
+  private String phoneNumber;
 
   @ElementCollection
   private Map<String, String> availability; // Example: {"MONDAY": "09:00-17:00", "WEDNESDAY": "09:00-17:00"}

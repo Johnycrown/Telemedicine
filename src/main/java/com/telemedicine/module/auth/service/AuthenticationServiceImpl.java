@@ -75,6 +75,8 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         }
         if (request.getRole().equals(Role.PATIENT)){
             Patient patient = modelMapper.map(savedUser, Patient.class);
+            patient.setName(savedUser.getLastname() +" " + savedUser.getFirstname());
+            patient.setPhone(savedUser.getPhoneNumber());
             patientRepository.save(patient);
 
         }
