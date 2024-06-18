@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class DoctorServiceImpl implements  DoctorService{
@@ -31,7 +33,7 @@ public class DoctorServiceImpl implements  DoctorService{
             pageSize = 10;
         }
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return doctorRepository.findAll(pageable).stream().toList();
+        return doctorRepository.findAll(pageable).stream().collect(Collectors.toList());
     }
 
     @Override
