@@ -10,6 +10,7 @@ package com.telemedicine.module.appointment.controller;
 
     @RestController
     @RequestMapping("/api/appointments")
+    @CrossOrigin(origins = "*")
     public class AppointmentController {
 
         @Autowired

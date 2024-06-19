@@ -16,7 +16,7 @@ public class Appointment {
     private Long patientId;
     private LocalDateTime appointmentDate;
     private String urgency; // Example: "low", "medium", "high"
-
+//460
     private boolean telemedicine;
 
    @Enumerated(EnumType.STRING)

@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/doctor")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin(origins = "*")
 public class DoctorController {
     private final DoctorService doctorService;
 
