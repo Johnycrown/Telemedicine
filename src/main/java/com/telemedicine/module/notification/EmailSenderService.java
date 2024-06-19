@@ -15,8 +15,7 @@ public class EmailSenderService {
 
     public void sendMailWithAttachment(String toEmail,
                                        String body,
-                                       String subject,
-                                       byte[] excelBytes) throws MessagingException {
+                                       String subject) throws MessagingException {
         MimeMessage mimeMessage=javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage,true);
         mimeMessageHelper.setFrom("arjungautam8877@gmail.com");
@@ -24,11 +23,10 @@ public class EmailSenderService {
         mimeMessageHelper.setText(body);
         mimeMessageHelper.setSubject(subject);
 
-
-        mimeMessageHelper.addAttachment("data.xlsx", new ByteArrayResource(excelBytes));
+       // mimeMessageHelper.addAttachment("data.xlsx", new ByteArrayResource(excelBytes));
 
         javaMailSender.send(mimeMessage);
-        System.out.printf("Mail with attachment sent successfully..");
+        //System.out.printf("Mail with attachment sent successfully..");
 
     }
 }

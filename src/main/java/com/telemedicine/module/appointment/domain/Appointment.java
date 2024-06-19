@@ -5,21 +5,20 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-//@Entity
-//@Data
+@Entity
+@Data
 public class Appointment {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private Long doctorId;
-
     private Long patientId;
-
     private LocalDateTime appointmentDate;
+    private String urgency; // Example: "low", "medium", "high"
 
     private boolean telemedicine;
 
-   // @Enumerated(EnumType.STRING)
+   @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 }
