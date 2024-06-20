@@ -51,6 +51,7 @@ public class ApplicationConfig {
 
     @Bean
     public CorsFilter corsFilter() {
+
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
@@ -82,6 +83,32 @@ public class ApplicationConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+
+    @Bean
+    public CorsConfiguration corsConfiguration() {
+
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.setAllowedOrigins(Collections.singletonList("https://tired-station-shrill-bucket-beta.pipeops.app"));
+        config.setAllowedHeaders(Arrays.asList(
+                ORIGIN,
+                CONTENT_TYPE,
+                ACCEPT,
+                AUTHORIZATION
+        ));
+        config.setAllowedMethods(Arrays.asList(
+                GET.name(),
+                POST.name(),
+                DELETE.name(),
+                PUT.name(),
+                PATCH.name()
+        ));
+
+        return config;
     }
 
 }

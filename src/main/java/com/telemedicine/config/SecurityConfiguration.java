@@ -14,6 +14,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -25,12 +27,16 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
+   // private final CorsFilter corsFilter;
+   private final CorsConfigurationSource corsConfigurationSource;
+
 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(c->c.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(
@@ -42,13 +48,16 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, "/api/v1/management/**").hasAnyAuthority(Permission.ADMIN_CREATE.name(), Permission.MANAGER_CREATE.name())
                                 .requestMatchers(HttpMethod.PUT, "/api/v1/management/**").hasAnyAuthority(Permission.ADMIN_UPDATE.name(), Permission.MANAGER_UPDATE.name())
                                 .requestMatchers(HttpMethod.DELETE, "/api/v1/management/**").hasAnyAuthority(Permission.ADMIN_DELETE.name(), Permission.MANAGER_DELETE.name())
-                                .requestMatchers("/api/v1/doctor/**").hasAnyRole(Role.ADMIN.name(), Role.MANAGER.name(), Role.DOCTOR.name())
+                                .requestMatchers("/doctor/**").hasAnyRole(Role.ADMIN.name(), Role.MANAGER.name(), Role.DOCTOR.name(),Role.PATIENT.name())
+                                .requestMatchers("/api/appointments/**").hasAnyRole(Role.ADMIN.name(), Role.MANAGER.name(), Role.DOCTOR.name(),Role.PATIENT.name())
+                                .requestMatchers("/patient/**").hasAnyRole(Role.ADMIN.name(), Role.MANAGER.name(), Role.DOCTOR.name(),Role.PATIENT.name())
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider)
+
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
